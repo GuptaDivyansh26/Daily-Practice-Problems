@@ -11,9 +11,8 @@ class Solution {
 public:
     vector<int> findKDistantIndices(vector<int>& nums, int key, int k) {
         
-        set<int> st;
-
         int n = nums.size();
+        vector<bool> v(n, false);
 
         for(int i = 0; i < n; i ++) {
 
@@ -24,12 +23,16 @@ public:
 
                 for(int j = left; j <= right; j ++) {
 
-                    st.insert(j);
+                    v[j] = true;
                 }
             }
         }
 
-        vector<int> res(st.begin(), st.end());
+        vector<int> res;
+        for(int i = 0; i < n; i ++) {
+
+            if(v[i] == true)    res.push_back(i);
+        }
 
         return res;
     }
