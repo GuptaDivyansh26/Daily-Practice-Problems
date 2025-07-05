@@ -1,29 +1,21 @@
 // Problem
 /*
-Given an array of integers arr, a lucky integer is an integer that has a frequency in the array equal to its value.
-
-Return the largest lucky integer in the array. If there is no lucky integer return -1.
+You are given an array arr[] of integers. Your task is to find the maximum sum of the smallest and second smallest elements across all subarrays (of size >= 2) of the given array.
 */
 
 // Code
 
 class Solution {
-public:
-    int findLucky(vector<int>& arr) {
-
-        int maxx = -1;
+  public:
+    int maxSum(vector<int> &arr) {
         
-        unordered_map<int, int> freq;
-        for(auto it: arr) {
-
-            freq[it] ++;
+        int res = 0;
+        
+        for(int i = 0; i < arr.size() - 1; i ++) {
+            
+            res = max(res, arr[i] + arr[i + 1]);
         }
-
-        for(auto it: freq) {
-
-            if(it.first == it.second)   maxx = max(maxx, it.first);
-        }
-
-        return maxx;
+        
+        return res;
     }
 };
